@@ -71,6 +71,7 @@ module.exports = function(grunt) {
             grunt.warn(e);
             done(e, null);
         }
+        return null;
     });
 
     grunt.registerMultiTask("mkcouchdb", "Make a Couch Database", function() {
@@ -106,6 +107,7 @@ module.exports = function(grunt) {
             grunt.warn(e);
             done(e, null);
         }
+        return null;
     });
 
 };
