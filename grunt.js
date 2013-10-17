@@ -7,7 +7,6 @@ try{
     console.log('to test cookie auth, you need a config.json file');
 }
 
-console.log(JSON.stringify(config))
 var couchapp_config = {
     test: {
         files: ['test/**/*.js']

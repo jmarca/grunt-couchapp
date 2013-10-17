@@ -37,11 +37,11 @@ exports.couchapp = {
 };
 
 exports.test_db_exists = function(test){
-    var dbh = require('nano')(COUCH_DB)
+    var dbh = require('nano')(COUCH_DB);
     dbh.db.list(function(err, body) {
         if (!err) {
             // body is an array
-            test.notEqual(body.indexOf(DEMO_COUCH_DB),-1,'could not find '+DEMO_COUCH_DB)
+            test.notEqual(body.indexOf(DEMO_COUCH_DB),-1,'could not find '+DEMO_COUCH_DB);
         }
         return test.done(err);
     });
@@ -49,15 +49,15 @@ exports.test_db_exists = function(test){
 };
 
 exports.test_db_contains = function(test){
-    var dbh = require('nano')([COUCH_DB,DEMO_COUCH_DB].join('/'))
+    var dbh = require('nano')([COUCH_DB,DEMO_COUCH_DB].join('/'));
     dbh.list(function(err, body) {
         if (!err) {
             test.equal(body.total_rows,
                        1,
-                       'something else is in the test database')
+                       'something else is in the test database');
             test.equal(body.rows[0].id,
                        '_design/app',
-                       'could not find _design/app in '+DEMO_COUCH_DB)
+                       'could not find _design/app in '+DEMO_COUCH_DB);
         }
         return test.done(err);
     });
@@ -101,17 +101,17 @@ exports.test_db_verify_attachment = function(test){
             });
             s.on('end', function() {
                 var d1 = shasum1.digest('hex');
-                test.equal(d1,d2
-                          ,'file index.html does not equal db version of index.html');
+                test.equal(d1,d2,
+                          'file index.html does not equal db version of index.html');
                 return test.done();
             });
             s.on('error',function(err){
-                console.log(err)
-                return test.done(err)
-            })
+                console.log(err);
+                return test.done(err);
+            });
         }else{
             return test.done(err);
         }
         return null;
-    })
+    });
 };
